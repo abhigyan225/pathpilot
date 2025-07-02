@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="side-panels-wrapper" style="display: flex; gap: 1rem; margin-top: 1rem;">
+
+  <!-- LEFT PANEL -->
+  <div class="panel left-panel" style="flex: 1; background: #1f2937; padding: 0.75rem; border-radius: 8px;">
+    <h3 style="color: #facc15; font-size: 1.1rem;">📌 Daily Tips</h3>
+    <ul style="color: #e5e7eb; font-size: 0.95rem;">
+      <li>Break your learning into small chunks.</li>
+      <li>Review your notes after each course.</li>
+      <li>Practice with real-world projects.</li>
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content" style="flex: 2; padding: 0 0.5rem;">
+    <div class="hero" style="text-align: center;">
+      <h1 style="color: #60a5fa; margin-bottom: 0.4rem;">🚀 Welcome to PathPilot</h1>
+      <p style="margin-bottom: 1rem;">Your intelligent learning companion for navigating courses smartly.</p>
+      <p style="max-width: 680px; margin: 0 auto 2rem auto; font-size: 1rem; color: #d1d5db;">
+        Whether you're a student, professional, or lifelong learner, PathPilot helps you chart your personalized learning path, track progress, and stay motivated with smart insights and tailored course suggestions.
+      </p>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section" style="margin-top: 2rem;">
+      <h2 style="color: #facc15; margin-bottom: 0.6rem;">✨ Explore PathPilot Features</h2>
+      <p style="color: #d1d5db; margin-bottom: 1.2rem;">
+        Discover powerful tools to guide, track, and enhance your learning experience.
+      </p>
+
+      <div class="features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
+        {% set feature_data = [
+          ('📊 Analytics', 'Track course progress, student activity, and completion rates.'),
+          ('🔥 Trends', 'See which courses are gaining popularity over time.'),
+          ('🎯 Recommendations', 'Get smart course suggestions based on your profile.'),
+          ('📚 Top Courses', 'Explore the most enrolled and highest-rated courses.'),
+          ('🧠 Learning Paths', 'Curated paths for roles like Data Scientist, AI Engineer, etc.'),
+          ('⏱️ Time Tracker', 'Monitor how much time you’re investing in each course.')
+        ] %}
+        {% for icon, desc in feature_data %}
+        <div style="background: #111827; padding: 0.8rem; border-radius: 0.5rem;">
+          <h3 style="margin-bottom: 0.4rem;">{{ icon }}</h3>
+          <p style="color: #9ca3af; font-size: 0.9rem;">{{ desc }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Call To Action -->
+    <div class="cta" style="text-align: center; margin-top: 2rem;">
+      <h2 style="color: #22c55e;">Start your learning journey with confidence!</h2>
+      <a href="/recommend" style="margin-top: 0.8rem; display: inline-block; background: #3b82f6; color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: bold;">
+        Try it Now
+      </a>
+    </div>
+
+    <footer style="text-align: center; margin-top: 2rem; color: #6b7280; font-size: 0.9rem;">
+      <p>&copy; 2025 <strong>PathPilot</strong>. Built with ❤️ by <strong>Abhigyan bajpai</strong>.</p>
+    </footer>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel right-panel" style="flex: 1; background: #1f2937; padding: 0.75rem; border-radius: 8px;">
+    <h3 style="color: #38bdf8; font-size: 1.1rem;">🗞️ Latest Updates</h3>
+    <ul style="color: #e5e7eb; font-size: 0.95rem;">
+      <li class="blink">New courses released!</li>
+      <li class="blink">Leaderboard feature coming soon.</li>
+    </ul>
+  </div>
+
+</div>
+
+{% endblock %}

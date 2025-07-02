@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="max-width: 1200px; margin: 3rem auto; padding: 2rem;">
+  <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; color: #f3f4f6;">📚 Top Courses</h1>
+
+  <!-- 🏆 Most Enrolled Courses -->
+  <section style="margin-bottom: 4rem;">
+    <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: #38bdf8;">🏆 Most Enrolled</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+      {% for course in top_enrolled %}
+      <div style="flex: 1 1 300px; background-color: #1f2937; padding: 1.5rem; border-radius: 1rem; border: 1px solid #374151; box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #facc15;">{{ course.title }}</h3>
+        <p style="font-size: 0.95rem; color: #e5e7eb;"><strong>Enrollments:</strong> {{ course.enrollments }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ⭐ Highest Rated Courses -->
+  <section>
+    <h2 style="font-size: 1.75rem; margin-bottom: 1rem; color: #f472b6;">⭐ Highest Rated</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+      {% for course in top_rated %}
+      <div style="flex: 1 1 300px; background-color: #1f2937; padding: 1.5rem; border-radius: 1rem; border: 1px solid #374151; box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #34d399;">{{ course.title }}</h3>
+        <p style="font-size: 0.95rem; color: #e5e7eb;"><strong>Rating:</strong> {{ course.rating }} ⭐</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% endblock %}
+

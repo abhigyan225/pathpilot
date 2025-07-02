@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="max-width: 1000px; margin: 2rem auto; padding: 1rem;">
+  <h2 style="text-align: center; font-size: 2.5rem; font-weight: bold; color: #f9fafb; margin-bottom: 2rem;">🧠 Curated Learning Paths</h2>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+    {% for role, courses in paths.items() %}
+    <div style="background-color: #1f2937; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.4); color: #e5e7eb;">
+      <h3 style="font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        {% if "Data Scientist" in role %}
+          📊
+        {% elif "AI" in role %}
+          🤖
+        {% elif "Engineer" in role %}
+          ⚙️
+        {% elif "Developer" in role %}
+          💻
+        {% elif "Analyst" in role %}
+          📈
+        {% else %}
+          🧑‍🎓
+        {% endif %}
+        {{ role }}
+      </h3>
+      <ul style="list-style-type: disc; padding-left: 1.2rem;">
+        {% for c in courses %}
+          <li style="margin-bottom: 0.4rem;">{{ c }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+
+  <p style="margin-top: 3rem; text-align: center; font-size: 0.95rem; color: #9ca3af;">
+    These curated learning paths are designed to help you grow into your dream role, step-by-step.
+  </p>
+</div>
+
+{% endblock %}
+
+

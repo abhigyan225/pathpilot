@@ -1,0 +1,7 @@
+course_id,title,description,enrollments,rating
+CS101,Python for Beginners,"Learn basic Python programming including syntax, loops, and functions.",120,4.5
+DS201,Intro to Data Science,"Covers data wrangling, statistics, and visualization using Python.",95,4.7
+ML301,Machine Learning A-Z,Supervised and unsupervised ML with scikit-learn and real-world datasets.,80,4.6
+NLP401,Natural Language Processing,"Learn text preprocessing, embeddings, and transformers for NLP.",70,4.3
+DL501,Deep Learning with TensorFlow,Build neural networks using TensorFlow and Keras.,60,4.4
+DS302,Deploying Machine Learning Models,"Learn to deploy ML models using Flask, Docker, and cloud platforms like AWS and Heroku. Covers model serving, API development, containerization, and CI/CD best practices.",45,4.6

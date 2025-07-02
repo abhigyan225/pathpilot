@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width: 960px; margin: 3rem auto; display: flex; gap: 2rem; align-items: flex-start; justify-content: center; flex-wrap: wrap;">
+
+  <!-- 🔑 Admin Login Form -->
+  <div style="flex: 1 1 420px; padding: 2rem; background: #222; border-radius: 1rem;">
+    <h2 style="text-align: center; font-size: 2rem; color: #f9fafb;">🔑 Admin Sign In</h2>
+
+    {% if error %}
+      <p style="color: #f87171; text-align: center; margin-top: 1rem;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+      <div>
+        <label for="admin_id" style="display: block; margin-bottom: 0.4rem; color: #f3f4f6;">🆔 Admin ID:</label>
+        <input type="text" name="admin_id" id="admin_id" required
+               style="width: 100%; padding: 0.75rem; border: 1px solid #4b5563; border-radius: 0.5rem; background-color: #1f2937; color: #f9fafb;">
+      </div>
+      <div>
+        <label for="password" style="display: block; margin-bottom: 0.4rem; color: #f3f4f6;">🔒 Password:</label>
+        <input type="password" name="password" id="password" required
+               style="width: 100%; padding: 0.75rem; border: 1px solid #4b5563; border-radius: 0.5rem; background-color: #1f2937; color: #f9fafb;">
+      </div>
+      <button type="submit"
+              style="width: 100%; padding: 0.8rem; background: #00ffd5; color: #000; font-weight: bold; border: none; border-radius: 0.5rem; cursor: pointer;">
+        🚪 Sign In
+      </button>
+    </form>
+  </div>
+
+  <!-- 🧪 Test Admin Credentials Panel -->
+  <div style="flex: 1 1 260px; background-color: #1f2937; border: 1px solid #374151; border-radius: 0.75rem; padding: 1.5rem; color: #e5e7eb;">
+    <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem; color: #facc15;">🧪 Admin Test Credentials</h3>
+    <p><strong>Username:</strong> <code style="color: #93c5fd;">admin</code></p>
+    <p><strong>Password:</strong> <code style="color: #93c5fd;">password123</code></p>
+    <p style="font-size: 0.9rem; color: #9ca3af; margin-top: 0.5rem;">Use these to explore the admin dashboard without setup.</p>
+  </div>
+
+</div>
+{% endblock %}
+

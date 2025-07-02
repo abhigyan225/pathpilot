@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-container">
+
+  <!-- ========== FLASH MESSAGES ========== -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flash-messages">
+        {% for category, message in messages %}
+          <li class="{{ 'flash-success' if category == 'success' else 'flash-error' }}">
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <!-- ========== SECTION 1: ADD NEW STUDENT / COURSE ========== -->
+  <div class="manual-entry-section" style="background-color: #1e1e2f; color: #f1f1f1; padding: 24px; border-radius: 10px; margin-bottom: 40px;">
+    <h2 style="color: #ffffff;">➕ Add New Entries</h2>
+    <p style="color: #dddddd;">Use this section to <strong>add a new student</strong> (ID, username, password) or <strong>add a new course</strong> (course ID, title, etc.). This directly updates the relevant data files.</p>
+
+    <div style="margin-top: 20px;">
+      <a href="{{ url_for('add_student') }}" class="action-link"
+         style="margin-right: 20px; background: #4caf50; color: white; padding: 10px 16px; border-radius: 5px; text-decoration: none;">
+         👤 Add New Student</a>
+      <a href="{{ url_for('add_course') }}" class="action-link"
+         style="background: #2196f3; color: white; padding: 10px 16px; border-radius: 5px; text-decoration: none;">
+         📘 Add New Course</a>
+    </div>
+  </div>
+
+  <!-- ========== SECTION 2: FILE UPLOAD ========== -->
+  <div class="upload-section" style="background-color: #2c2c3c; color: #f1f1f1; padding: 24px; border-radius: 10px;">
+    <h2 style="color: #ffffff;">📁 Upload & Replace Data Files</h2>
+    <p style="color: #dddddd;">This section lets you <strong>upload and replace</strong> the complete CSV and YAML data files. It expects <strong>exactly five files</strong>, each with a specific format.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="admin-form">
+
+      <div class="file-group">
+        <label><strong>courses.csv</strong></label>
+        <p class="desc">Required columns: <code>course_id, title, description, enrollments, rating</code></p>
+        <input type="file" name="courses_file">
+      </div>
+
+      <div class="file-group">
+        <label><strong>learning_paths.yaml</strong></label>
+        <p class="desc">Format example:</p>
+        <pre style="background-color: #444; color: #eee; padding: 10px;">
+Data Scientist:
+  - CS101  # Python for Beginners
+  - DS201  # Intro to Data Science
+  - ML301  # Machine Learning A-Z
+
+AI Engineer:
+  - CS101  # Python for Beginners
+  - DL501  # Deep Learning with TensorFlow
+  - NLP401 # Natural Language Processing</pre>
+        <input type="file" name="learning_paths_file">
+      </div>
+
+      <div class="file-group">
+        <label><strong>student_progress.csv</strong></label>
+        <p class="desc">Required columns: <code>student_id, completed_courses, completion_dates, time_spent_hours</code></p>
+        <input type="file" name="student_progress_file">
+      </div>
+
+      <div class="file-group">
+        <label><strong>time_tracking.csv</strong></label>
+        <p class="desc">Required columns: <code>student_id, date, hours_spent, task</code></p>
+        <input type="file" name="time_tracking_file">
+      </div>
+
+      <div class="file-group">
+        <label><strong>students.csv</strong></label>
+        <p class="desc">Required columns: <code>student_id, username, password</code></p>
+        <input type="file" name="students_file">
+      </div>
+
+      <button type="submit" class="upload-button">📤 Upload Files</button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

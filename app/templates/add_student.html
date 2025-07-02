@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-card">
+  <h2 class="form-heading">👤 Add New Student</h2>
+  <p class="form-subtext">Create a new student account by filling in the fields below.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flash-messages">
+        {% for category, message in messages %}
+          <li class="{{ 'flash-success' if category == 'success' else 'flash-error' }}">
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" class="form-grid">
+    <div class="form-item">
+      <label for="student_id">🆔 Student ID</label>
+      <input type="text" name="student_id" id="student_id" placeholder="e.g., S1001" required>
+    </div>
+
+    <div class="form-item">
+      <label for="username">👤 Username</label>
+      <input type="text" name="username" id="username" placeholder="e.g., johndoe" required>
+    </div>
+
+    <div class="form-item">
+      <label for="password">🔒 Password</label>
+      <input type="password" name="password" id="password" placeholder="••••••••" required>
+    </div>
+
+    <button type="submit" class="primary-button">➕ Add Student</button>
+  </form>
+
+  <a href="{{ url_for('admin_dashboard') }}" class="back-link">← Back to Dashboard</a>
+</div>
+{% endblock %}

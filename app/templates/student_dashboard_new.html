@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 700px; margin: auto; padding: 2rem;">
+    <h2>🎉 Welcome, {{ student_name }}!</h2>
+
+    {% if success %}
+        <div style="background: #1e3a3a; padding: 1.5rem; border-radius: 10px; color: lightgreen;">
+            ✅ Your progress has been successfully updated!
+            <br><br>
+            <a href="{{ url_for('student_dashboard') }}" style="color: cyan;">🔄 View Dashboard Again</a> |
+            <a href="{{ url_for('student_login') }}" style="color: orange;">🚪 Logout</a>
+        </div>
+    {% else %}
+        {% if not selected_courses %}
+            <p style="color: gold;">🧠 You haven't completed any courses yet. Select one below to begin your journey!</p>
+        {% else %}
+            <p>📚 You can update your course progress below:</p>
+        {% endif %}
+
+        <form method="POST">
+            {% for course in all_courses %}
+                <div style="margin: 1rem 0; background: #1e2a38; padding: 1rem; border-radius: 10px;">
+                    <label>
+                        <input type="checkbox" name="completed_courses" value="{{ course.course_id }}"
+                               onchange="toggleTimeField(this)"
+                               {% if course.course_id in selected_courses %}checked{% endif %}>
+                        <strong>{{ course.title }}</strong> ({{ course.course_id }})
+                    </label><br>
+                    <label>
+                        ⏱ Time spent (hrs):
+                        <input type="number"
+                               name="time_{{ course.course_id }}"
+                               min="0"
+                               step="0.1"
+                               {% if course.course_id in selected_courses %}
+                                   value="{{ time_spent.get(course.course_id, '') }}"
+                               {% else %}
+                                   disabled
+                               {% endif %}>
+                    </label>
+                </div>
+            {% endfor %}
+
+            <div style="margin-top: 1.5rem;">
+                <label for="progress">📊 Overall Progress (%):</label>
+                <input type="number" name="progress" min="0" max="100" value="{{ progress or 0 }}" required>
+            </div>
+
+            <button type="submit" style="margin-top: 1.5rem;">✅ Submit Progress</button>
+        </form>
+    {% endif %}
+</div>
+
+<script>
+    function toggleTimeField(checkbox) {
+        const input = document.querySelector(`input[name='time_${checkbox.value}']`);
+        if (input) {
+            input.disabled = !checkbox.checked;
+            input.required = checkbox.checked;
+            if (!checkbox.checked) input.value = '';
+        }
+    }
+
+    // ✅ Ensure correct state on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("input[type='checkbox'][name='completed_courses']").forEach(cb => {
+            toggleTimeField(cb);
+        });
+    });
+</script>
+{% endblock %}

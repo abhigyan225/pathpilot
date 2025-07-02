@@ -1,0 +1,93 @@
+
+📚 MACHINE LEARNING TYPE USED IN YOUR COURSE RECOMMENDER SYSTEM
+
+Your current approach falls under:
+
+🎯 UNSUPERVISED MACHINE LEARNING (Content-Based Filtering)
+
+You're using techniques from the field of Recommender Systems, particularly:
+- NLP-based embeddings
+- Cosine similarity
+- Content-based filtering
+
+This is not classification or regression — it's vector-based matching using feature similarity.
+
+
+🔧 WHAT IS CONTENT-BASED FILTERING?
+
+Definition:
+A recommendation approach where we recommend items (courses) to a user (student) based on the similarity between item content and the user’s preferences.
+
+Your system answers:
+“What other courses are similar to the ones this student already completed?”
+
+
+🧩 HOW YOUR SYSTEM WORKS
+
+STEP 1: Course Embeddings
+Each course is represented by a feature vector (embedding), based on:
+- Course title
+- Description
+- Tags / keywords
+
+Example:
+Course: "Python for Data Science"
+Description: "Learn Python, Numpy, Pandas, Visualization, and more."
+Embedding: [0.21, 0.48, -0.15, ..., 0.92]
+
+STEP 2: Student Profile Vector
+Each student’s profile = average of vectors of completed courses.
+
+If a student took:
+- Course A → [0.2, 0.5, -0.1]
+- Course B → [0.1, 0.7, 0.0]
+Profile vector = [0.15, 0.6, -0.05]
+
+STEP 3: Cosine Similarity
+To recommend:
+- Compare student profile with every course not completed.
+- Use cosine similarity.
+
+Formula:
+cos(θ) = (a ⋅ b) / (||a|| * ||b||)
+
+Higher cosine similarity → higher recommendation score
+
+
+🔍 EXAMPLE
+
+Courses:
+Python         [0.1, 0.5]
+Data Science   [0.2, 0.6]
+Deep Learning  [0.9, 0.1]
+
+Student A took: Python → [0.1, 0.5]
+Profile vector = [0.1, 0.5]
+
+Similarity:
+Data Science → high similarity ✅
+Deep Learning → low similarity ❌
+
+→ Recommend Data Science
+
+
+🛠️ TOOLS
+
+- Embeddings: Sentence Transformers, OpenAI, TF-IDF
+- Similarity: cosine_similarity (sklearn)
+- Vector math: numpy, pandas
+
+
+✅ PROS
+
+- Works with small data
+- Handles new courses (cold start)
+- Fast & scalable
+- Good personalization
+
+
+❌ LIMITATIONS
+
+- Doesn’t learn from other students
+- Can’t recommend dissimilar or surprising courses
+- Weak if student has few or no completed courses

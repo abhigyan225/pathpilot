@@ -1,0 +1,409 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+}
+
+/* Header and nav */
+h1 {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00ffd5;
+}
+
+/* Hero section */
+.hero {
+  padding: 40px 20px 30px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #00ffd5;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #02e3c4;
+  transform: scale(1.05);
+}
+
+/* Side Panels + Features container */
+.side-panels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Side panel */
+.panel {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  color: #fff;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  height: fit-content;
+  flex-shrink: 0;
+}
+
+.panel h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #00fff7;
+}
+
+.panel ul {
+  padding-left: 1.2rem;
+  text-align: left;
+}
+
+.panel li {
+  margin-bottom: 0.6rem;
+  list-style-type: disc;
+}
+
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h3 {
+  margin-bottom: 10px;
+  color: #00ffd5;
+}
+
+/* CTA */
+.cta {
+  padding: 50px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 40px;
+}
+
+.cta h2 {
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+/* Responsive behavior */
+@media (max-width: 1024px) {
+  .side-panels {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+
+  .features {
+    padding: 0;
+  }
+}
+/* Section wrapper to give background color to entire panel area */
+.side-panels-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2rem 0;
+}
+
+/* Animate the Latest Updates title */
+.blink {
+  animation: blink-animation 1.5s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Override spacing to push panels further to sides */
+.side-panels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  gap: 3rem;
+  flex-wrap: nowrap;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 800px;
+}
+
+/* Main container */
+.recommend-page {
+    background-color: #0f2027;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* Headings */
+.recommend-page h2,
+.recommend-page h4 {
+    font-weight: 700;
+    color: #00f5c5;
+    text-align: center;
+}
+
+/* Form section */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Label styling */
+.search-form label {
+    color: #9be3ff;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Input box styling */
+.search-form input {
+    border-radius: 10px;
+    padding: 12px 16px 12px 40px;
+    background-color: #1e2a38;
+    color: #ffffff;
+    border: 2px solid #00f5c5;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/1828/1828911.png');
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    transition: all 0.3s ease;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: #00e0ff;
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
+}
+
+.search-form input::placeholder {
+    color: #a0b3c5;
+}
+
+/* Submit button */
+.search-form .btn {
+    border-radius: 10px;
+    font-weight: 600;
+    background-color: #00e5ff;
+    border: none;
+    color: #000;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-form .btn:hover {
+    background-color: #00c2e0;
+    transform: scale(1.02);
+}
+
+/* Course cards */
+.course-card {
+    background-color: #1c2b36;
+    border-left: 5px solid #00f5c5;
+    border-radius: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    background-color: #22313f;
+}
+/* === Enhancements for analytics.html (safe append only) === */
+
+.main-content {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.analytics-summary {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 255, 213, 0.08);
+}
+
+.analytics-summary p {
+  font-size: 1.2rem;
+  color: #ccf9ff;
+  margin: 0;
+}
+
+.analytics-summary::after {
+  content: '';
+  display: block;
+  margin-top: 10px;
+  height: 8px;
+  width: 70%;
+  background: linear-gradient(to right, #00ffd5, #00bba5);
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0, 255, 213, 0.3);
+}
+
+.active-students-section {
+  background-color:rgba(255, 255, 255, 0.05);
+}
+.admin-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,213,0.1);
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-container h2 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #00ffd5;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.file-group {
+  background: #2a2a2a;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.file-group label {
+  font-weight: bold;
+  color: #00ffd5;
+}
+
+.file-group .desc {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0.2rem 0 0.6rem;
+}
+
+pre {
+  background: #111;
+  padding: 0.8rem;
+  color: #ccc;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.upload-button {
+  padding: 0.8rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000;
+  background: #00ffd5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upload-button:hover {
+  background: #00c7b0;
+}
+
+.flash-messages {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.flash-success {
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.flash-error {
+  color: salmon;
+  font-weight: bold;
+}
+.features-section {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  color: #00ffd5;
+  margin-bottom: 0.5rem;
+}
+
+.features-section .features-description {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}

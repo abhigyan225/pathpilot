@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="recommend-page container py-5">
+    <h2 class="mb-5 text-center">🎯 Smart Course Recommendations</h2>
+
+    <!-- Centered Search Form -->
+    <div class="d-flex justify-content-center">
+        <form method="post" class="search-form text-center w-100" style="max-width: 500px;">
+            <label for="student_id" class="form-label text-light">🔢 Enter Student ID:</label>
+            <input type="text" name="student_id" placeholder="e.g., S001, S002..." class="form-control mt-2" required>
+            <button type="submit" class="btn btn-info mt-3 w-100">Get Recommendations</button>
+        </form>
+    </div>
+
+    <!-- ❌ Student Not Found -->
+    {% if error %}
+        <div class="alert alert-danger mt-4 text-center" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <!-- ⚠️ No Completed Courses -->
+    {% if no_courses %}
+        <div class="alert alert-warning mt-4 text-center" role="alert">
+            No completed courses found for <strong>{{ student_id }}</strong>. Select a course below to begin your learning journey!
+        </div>
+
+        <h5 class="text-center mt-4 text-light">📖 Available Courses</h5>
+        <div class="row justify-content-center g-4 mt-3">
+            {% for course in all_courses %}
+            <div class="col-md-6 col-lg-5">
+                <div class="card course-card shadow-sm h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">{{ course.title }}</h5>
+                        <p class="card-text text-light">{{ course.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <p class="text-muted text-center mt-4">💡 You can update your progress data from the <strong>Student Login</strong>.</p>
+    {% endif %}
+
+    <!-- ✅ Recommendations -->
+    <!-- ✅ Recommendations -->
+    {% if recommendations %}
+    <h4 class="text-center mt-5 mb-4">📚 Top Recommended Courses:</h4>
+    <div class="row justify-content-center g-4">
+        {% for course in recommendations %}
+        <div class="col-md-6 col-lg-5">
+            <div class="card course-card shadow-sm h-100 p-3">
+                <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">{{ loop.index }}. {{ course.title }}</h5>
+                    <p class="card-text text-light">{{ course.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

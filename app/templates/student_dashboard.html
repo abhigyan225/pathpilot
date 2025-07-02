@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #141e30, #243b55);
+        font-family: 'Segoe UI', sans-serif;
+        color: #fff;
+    }
+
+    .dashboard-wrapper {
+        max-width: 800px;
+        margin: 2rem auto;
+        text-align: center;
+    }
+
+    .learning-map {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .course-node {
+        background: #1e2a38;
+        padding: 15px 25px;
+        margin: 10px 0;
+        border-radius: 25px;
+        width: 80%;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        transition: all 0.3s ease;
+    }
+
+    .course-node.completed {
+        background: #28a745;
+        box-shadow: 0 0 15px #28a745;
+    }
+
+    .course-node label {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .course-node input[type="number"] {
+        width: 80px;
+        padding: 4px;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .map-line {
+        width: 4px;
+        height: 30px;
+        background: #6cc3d5;
+        margin: 0.5rem 0;
+    }
+
+    .submit-btn {
+        margin-top: 2rem;
+        padding: 10px 20px;
+        background-color: #00c3ff;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+
+    h2, h3 {
+        margin-bottom: 20px;
+    }
+
+    .info-message {
+        font-style: italic;
+        color: #ffd700;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="dashboard-wrapper">
+    <h2>👋 Welcome, {{ session.username.capitalize() }}</h2>
+    <h3>🧭 Your Learning Journey</h3>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} info-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <div class="learning-map">
+
+            {% if completed %}
+                <!-- ✅ Show completed courses -->
+                {% for cid in completed %}
+                    <div class="course-node completed">
+                        ✅ <strong>{{ cid }}</strong>
+                    </div>
+                    <div class="map-line"></div>
+                {% endfor %}
+            {% else %}
+                <!-- 📭 No progress yet message -->
+                <p class="info-message">📭 You haven't completed any courses yet. Select one below to begin your journey!</p>
+            {% endif %}
+
+            <!-- 📚 Show recommended courses for progress update -->
+            {% for course in recommended %}
+                {% set course_display = course.title ~ ' (' ~ course.course_id ~ ')' %}
+                {% if course_display not in completed %}
+                    <div class="course-node">
+                        <label>
+                            <input type="checkbox" name="completed_courses" value="{{ course.course_id }}"
+                                   onchange="toggleTimeField(this)">
+                            <strong>{{ course.title }}</strong> ({{ course.course_id }})
+                        </label>
+                        <label>
+                            ⏱ Time spent (hrs):
+                            <input type="number" name="time_{{ course.course_id }}" min="0" step="0.1" disabled>
+                        </label>
+                    </div>
+                    <div class="map-line"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="submit-btn">✅ Update Progress</button>
+    </form>
+</div>
+
+<script>
+    function toggleTimeField(checkbox) {
+        const input = document.querySelector(`input[name='time_${checkbox.value}']`);
+        if (input) {
+            input.disabled = !checkbox.checked;
+            input.required = checkbox.checked;
+            if (!checkbox.checked) input.value = '';
+        }
+    }
+</script>
+{% endblock %}

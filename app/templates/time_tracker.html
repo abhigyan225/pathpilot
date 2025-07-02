@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="max-width: 1100px; margin: 3rem auto; padding: 2rem;">
+  <h1 style="text-align: center; font-size: 2.2rem; margin-bottom: 2rem; color: #f3f4f6;">⏱️ Time Tracker by Student & Task</h1>
+
+  <!-- Search Form -->
+  <form method="get" action="{{ url_for('time_tracker') }}" style="text-align: center; margin-bottom: 2rem;">
+    <input 
+      type="text" 
+      name="q" 
+      value="{{ search_query }}" 
+      placeholder="Enter student name or ID..." 
+      style="padding: 0.8rem 1rem; width: 300px; border-radius: 0.5rem; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb;">
+    <button 
+      type="submit" 
+      style="padding: 0.8rem 1.2rem; margin-left: 0.5rem; background-color: #3b82f6; color: white; border: none; border-radius: 0.5rem; font-weight: 500; cursor: pointer;">
+      🔍 Search
+    </button>
+    {% if search_query %}
+    <a 
+      href="{{ url_for('time_tracker') }}" 
+      style="padding: 0.8rem 1.2rem; margin-left: 0.5rem; background-color: #6b7280; color: white; border: none; border-radius: 0.5rem; text-decoration: none;">
+      ✖ Clear
+    </a>
+    {% endif %}
+  </form>
+
+  {% if time_data %}
+  <!-- Beautiful Time Tracker Table -->
+  <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #374151; background-color: #111827; color: #f3f4f6;">
+      <thead>
+        <tr style="background-color: #1f2937;">
+          <th style="padding: 1rem; text-align: left; border-bottom: 1px solid #374151;">👤 Student</th>
+          {% for t in task_columns %}
+          <th style="padding: 1rem; text-align: center; border-bottom: 1px solid #374151;">{{ t }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in time_data %}
+        <tr style="border-bottom: 1px solid #374151;">
+          <td style="padding: 1rem; font-weight: 500; color: #facc15;">{{ row.student_label }}</td>
+          {% for t in task_columns %}
+          <td style="padding: 1rem; text-align: center; color: #93c5fd;">
+            {{ "%.1f"|format(row[t]) }} hrs
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% elif search_query %}
+    <p style="text-align: center; font-size: 1.1rem; color: #f87171;">No time tracking data found for <strong>{{ search_query }}</strong>.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

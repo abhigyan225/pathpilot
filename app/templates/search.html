@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="main-content search-results-page">
+  <h2>🔍 Search Results for "<span style="color:#007BFF">{{ query }}</span>"</h2>
+
+  {% if courses %}
+    <ul class="search-results">
+      {% for course in courses %}
+        <li class="course-item">
+          <strong>{{ course.course_id }}</strong>: {{ course.title }}<br>
+          <small>{{ course.description }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No courses found matching "<strong>{{ query }}</strong>".</p>
+  {% endif %}
+</div>
+
+{% endblock %}

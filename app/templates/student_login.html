@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 960px; margin: 3rem auto; display: flex; gap: 2rem; align-items: flex-start; justify-content: center; flex-wrap: wrap;">
+
+  <!-- 🎓 Student Login Form -->
+  <div class="form-card" style="flex: 1 1 460px; padding: 2.5rem; background-color: #111827; color: #f9fafb; border-radius: 1rem; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);">
+    <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center;">🎓 Student Login</h2>
+    <p style="font-size: 1rem; color: #d1d5db; text-align: center; margin-bottom: 1.8rem;">Enter your credentials to access your dashboard.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul style="margin-bottom: 1rem;">
+          {% for category, message in messages %}
+            <li style="color: #f87171; font-size: 0.95rem; text-align: center;">
+              {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div style="display: flex; flex-direction: column;">
+        <label for="username" style="font-weight: 500; margin-bottom: 0.4rem; color: #f3f4f6;">👤 Username</label>
+        <input type="text" name="username" id="username" placeholder="e.g., johndoe" required
+               style="padding: 0.75rem 1rem; border: 1px solid #4b5563; border-radius: 0.5rem; font-size: 1rem; background-color: #1f2937; color: #f9fafb;">
+      </div>
+
+      <div style="display: flex; flex-direction: column;">
+        <label for="password" style="font-weight: 500; margin-bottom: 0.4rem; color: #f3f4f6;">🔒 Password</label>
+        <input type="password" name="password" id="password" placeholder="••••••••" required
+               style="padding: 0.75rem 1rem; border: 1px solid #4b5563; border-radius: 0.5rem; font-size: 1rem; background-color: #1f2937; color: #f9fafb;">
+      </div>
+
+      <button type="submit"
+              style="background-color: #2563eb; color: white; padding: 0.8rem; font-size: 1.1rem; font-weight: 500; border: none; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s;">
+        🔓 Login
+      </button>
+    </form>
+  </div>
+
+  <!-- 🔑 Test Credentials Panel -->
+  <div style="flex: 1 1 260px; background-color: #1f2937; border: 1px solid #374151; border-radius: 0.75rem; padding: 1.5rem; color: #e5e7eb;">
+    <h3 style="margin-bottom: 0.75rem; font-size: 1.25rem; color: #facc15;">🧪 Test Credentials</h3>
+    <p><strong>Username:</strong> <code style="color: #93c5fd;">bob</code></p>
+    <p><strong>Password:</strong> <code style="color: #93c5fd;">abcd</code></p>
+    <p style="font-size: 0.9rem; color: #9ca3af; margin-top: 0.5rem;">Use these to explore the student dashboard without registering.</p>
+  </div>
+
+</div>
+{% endblock %}

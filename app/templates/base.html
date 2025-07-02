@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PathPilot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 1rem auto 0;
+            padding: 0 2rem;
+            flex-wrap: wrap;
+            color: #ccc;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-bar input {
+            padding: 6px 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: #00ffd5;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #clock {
+            font-family: monospace;
+            font-size: 1rem;
+            color: #00ffd5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar: Clock & Search -->
+    <div class="header-top">
+        <div id="clock">--:--:--</div>
+        
+        <!-- ✅ Corrected Search Form -->
+        <form action="{{ url_for('search') }}" method="get" class="search-bar">
+            <input type="text" name="q" placeholder="Search courses..." value="{{ request.args.get('q', '') }}">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+
+    <header style="padding: 2rem 0 1rem; position: relative;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: center; align-items: center; position: relative;">
+        
+        <!-- ✅ Admin & Student Login with Descriptions -->
+        <div style="position: absolute; left: -5rem; margin-top: 6rem ;display: flex; flex-direction: column; gap: 0.3rem;">
+            <div>
+                <a href="/admin-login" style="color: #00ffd5; font-weight: bold; text-decoration: none;">🔒 Admin Login</a><br>
+                <small style="color: #888;">Manage course data & monitor students</small>
+            </div>
+            <div style="margin-top: 0.4rem;">
+                <a href="/student-login" style="color: #00ffd5; font-weight: bold; text-decoration: none;">👨‍🎓 Student Login</a><br>
+                <small style="color: #888;">Track progress, get course suggestions</small>
+            </div>
+        </div>
+
+        <!-- Centered Logo + Title -->
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span style="font-size: 2.5rem;">🌐</span>
+            <h1 style="font-size: 2.5rem; margin: 0;">PathPilot</h1>
+        </div>
+    </div>
+
+    <p style="margin-top: 0.5rem; color: #ccc; font-size: 1.1rem; text-align: center;">Your AI-powered course navigator</p>
+
+    <nav style="margin-top: 1.2rem; text-align: center;">
+        <a href="/" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Home</a> |
+        <a href="/recommend" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Recommend</a> |
+        <a href="/analytics" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Analytics</a> |
+        <a href="/trends" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Trends</a> |
+        <a href="/top-courses" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Top Courses</a> |
+        <a href="/time-tracker" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Time Tracker</a> |
+        <a href="/learning-path" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: bold;">Learning Path</a>
+    </nav>
+    </header>
+
+    <hr style="border-color: rgba(255,255,255,0.1); margin: 1.5rem 0;">
+
+    {% block content %}{% endblock %}
+
+    <!-- Live Clock Script -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call
+    </script>
+</body>
+</html>
